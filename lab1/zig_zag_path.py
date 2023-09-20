@@ -23,18 +23,17 @@ def zig_zag_path(matrix: list[list[any]]) -> list[any]:
     
     for diagonal in range(diagonals):
         print(f"== {diagonal} ==")
-        if diagonal % 2 != 0:
+        if diagonal % 2 == 0:
             if diagonal < n:
                 i, j = diagonal, 0
             if diagonal >= n:
                 i, j = n - 1, diagonal - n + 1
-            print(i + j == diagonal, diagonal, n, m) 
             while i >= 0 and j <= m - 1:
                 print(f"{matrix[i][j]} ({i}, {j})")
                 result.append(matrix[i][j])
                 i -= 1
                 j += 1
-        if diagonal % 2 != 1:
+        if diagonal % 2 == 1:
             if diagonal < m:
                 i, j = 0, diagonal
             if diagonal >= m:
