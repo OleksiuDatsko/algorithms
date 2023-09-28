@@ -8,7 +8,6 @@ def get_zig_zag_result(n, m):
 
 
 class TestZigZagPath(unittest.TestCase):
-
     def test_zig_zag_path_n5_m5(self):
         zig_zag_result = get_zig_zag_result(n=5, m=5)
         self.assertEqual(
@@ -45,5 +44,5 @@ class TestZigZagPath(unittest.TestCase):
         )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

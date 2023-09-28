@@ -1,4 +1,3 @@
-
 def generate_matrix(n: int, m: int, print_matrix: bool = False) -> list[list[int]]:
     result = []
     sub_result = []
@@ -21,9 +20,9 @@ def zig_zag_path(matrix: list[list[any]]) -> list[any]:
     result = []
 
     diagonals = n + m - 1
-    
+
     for diagonal in range(diagonals):
-        if diagonal % 2 == 0:
+        if diagonal % 2 != 0:
             if diagonal < n:
                 i, j = diagonal, 0
             if diagonal >= n:
@@ -32,7 +31,7 @@ def zig_zag_path(matrix: list[list[any]]) -> list[any]:
                 result.append(matrix[i][j])
                 i -= 1
                 j += 1
-        if diagonal % 2 == 1:
+        if diagonal % 2 != 1:
             if diagonal < m:
                 i, j = 0, diagonal
             if diagonal >= m:
@@ -42,3 +41,29 @@ def zig_zag_path(matrix: list[list[any]]) -> list[any]:
                 j -= 1
                 i += 1
     return result
+
+
+
+def buble_sort(input_array: list[int]) -> list[int]:
+    i = 0
+    count = 0
+    swapped = False
+    while i < len(input_array):
+        j = 0
+        count += 1
+        swapped = False
+        while j < len(input_array) - 1:
+            if input_array[j] > input_array[j + 1]:
+                swapped = True
+                input_array[j], input_array[j + 1] = input_array[j + 1], input_array[j]
+            count += 1
+            j += 1
+        if not swapped:
+            break
+        i += 1
+    print(count)
+    return input_array 
+
+
+if __name__ == "__main__":
+    print(buble_sort([i for i in range(5, 0, -1)]))
