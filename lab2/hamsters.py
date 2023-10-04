@@ -11,14 +11,22 @@ def sort_humsters_total_food(hamsters: list[int]) -> list[int]:
     hamsters.sort()
     return hamsters
 
+
 def get_number_of_hamsters(s: int, c: int, hamsters: list[list[int, int]]) -> int:
+    """
+    sort(c) = c^2 => o(c^3)
+    c*(sort(c) + c) = c^3
+
+    sort(c) = c*log(c) => o(c^2*log(c))
+    c*(c*log(c) + c) = c^2*(log(c) + 1) = c^2*log(c)
+    """
     total_hamsters = c
     count = 0
     for total_hamsters in range(c, 0, -1):
         count += 1
         hamsters_pacets = sort_humsters_total_food(
             get_hamsters_pacets_of_food(hamsters, total_hamsters - 1)
-        )
+        )  # o(sort(n))
         total_pacets = 0
         count_avalible_hamsters = 0
         for hamster in range(total_hamsters):
@@ -26,25 +34,25 @@ def get_number_of_hamsters(s: int, c: int, hamsters: list[list[int, int]]) -> in
                 break
             total_pacets += hamsters_pacets[hamster]
             count_avalible_hamsters += 1
-                   
+
         if count_avalible_hamsters == total_hamsters:
             return total_hamsters
         if count >= 100:
             return 0
     return 0
-            
 
 
 if __name__ == "__main__":
     hamsters = [
-          [1, 50000],
-          [1, 60000],
-      ]
+        [1, 50000],
+        [1, 60000],
+    ]
     s = 2
     c = 2
-    x = get_number_of_hamsters(
-          hamsters = hamsters,
-          s = s,
-          c = c,
-      )
-    print(x)
+    print(
+        get_number_of_hamsters(
+            hamsters=hamsters,
+            s=s,
+            c=c,
+        )
+    )
