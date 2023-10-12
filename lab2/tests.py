@@ -1,6 +1,6 @@
 import unittest
 
-from hamsters import get_number_of_hamsters
+from hamsters_v3 import get_number_of_hamsters
 
 
 class TestGetNumberOfHamsters(unittest.TestCase):
@@ -32,6 +32,17 @@ class TestGetNumberOfHamsters(unittest.TestCase):
         ]
         s = 2
         c = 2
+        self.assertEqual(get_number_of_hamsters(s, c, hamsters), 1)
+        
+    def test_get_number_of_hamsters_s9_c4(self):
+        hamsters = [
+            [1, 2],
+            [3, 4],
+            [5, 6],
+            [7, 8],
+            ]
+        s = 9
+        c = 4
         self.assertEqual(get_number_of_hamsters(s, c, hamsters), 1)
 
 
