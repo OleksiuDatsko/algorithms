@@ -1,5 +1,6 @@
 import unittest
-from src.binary_tree import find_successor, BinaryTree
+from src.binary_tree import BinaryTree
+from src.find_successor import find_successor
 
 
 class TestBinaryTreeSuccessor(unittest.TestCase):
@@ -35,11 +36,10 @@ class TestBinaryTreeSuccessor(unittest.TestCase):
     def test_find_successor_v10(self):
         result = find_successor(self.root, self.v10)
         self.assertEqual(result, self.v15)
-    
+
     def test_find_successor_v20(self):
         result = find_successor(self.root, self.v20)
         self.assertIsNone(result)
-    
 
 
 if __name__ == "__main__":

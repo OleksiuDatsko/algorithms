@@ -39,3 +39,11 @@ class BinaryTree:
             print(" -> ".join(result))
         else:
             print(" -> ".join(result))
+
+
+def inordef_reqursive(root: "BinaryTree"):
+    if root is None:
+        return
+    inordef_reqursive(root.left)
+    print(root, end=" -> ")
+    inordef_reqursive(root.right)
