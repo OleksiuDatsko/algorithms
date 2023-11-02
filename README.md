@@ -152,6 +152,7 @@ root.right = BinaryTree(20)
 ### Лабораторна №4 (Варіант 3 рівень 3)
 #### Код
  1. [code](https://github.com/OleksiuDatsko/algorithms/tree/lab4-v3-l3)
+ 2. [02-11-2023](https://github.com/OleksiuDatsko/algorithms/tree/lab4-v3-l3_02-11-2023)
 #### Завдання
 
 Нехай дано двійкову матрицю, де 0 означає воду, а 1 — сушу, а з’єднані числа 1 утворюють острів, підрахуйте загальну кількість островів.
