@@ -48,13 +48,17 @@ def number_of_islands() -> int:
     visited = []
     islands = 0
     adjacency_list = convert_file_to_adjacency_list("./input.txt")
+    
+    count = 0
 
     def bfs(node):
         nonlocal visited
+        nonlocal count
         visited.append(node)
-
+        
         queue = [node]
         while queue:
+            count += 1
             current_node = queue.pop(0)
             for neighbor in adjacency_list[current_node]:
                 if neighbor not in visited:
@@ -65,7 +69,7 @@ def number_of_islands() -> int:
         if node not in visited:
             islands += 1
             bfs(node)
-
+    print(count)
     return islands
 
 
