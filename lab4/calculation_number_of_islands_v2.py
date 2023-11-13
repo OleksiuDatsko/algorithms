@@ -18,31 +18,20 @@ def cheack_colisions(i: int, j: int, rows: int, cols: int) -> bool:
 
 def convert_file_to_adjacency_list(input_file):
     adjacency_list = {}
-
+    
     with open(input_file, "r") as f:
-        lines = f.readlines()
-
-    rows = len(lines)
-    cols = len(lines[0]) - 1
-    print(rows, cols)
-    for i in range(rows):
-        for j in range(cols - 1):
-            if lines[i][j] == "1":
-                neighbors = []
-                for i_m, j_m in neighborhood_modificators:
-                    n_i, n_j = i + i_m, j + j_m
-                    if (
-                        cheack_colisions(n_i, n_j, rows, cols)
-                        and lines[n_i][n_j] == "1"
-                    ):
-                        neighbors.append((n_i, n_j // 3))
-                adjacency_list[(i, j // 3)] = neighbors
-
-    for key, value in adjacency_list.items():
-        print(key, value)
+        for i, line in enumerate(f):
+            line = line.strip()
+            for j, char in enumerate(line):
+                if char == '1':
+                    neighbors = []
+                    for i_m, j_m in neighborhood_modificators:
+                        n_i, n_j = i + i_m, j + j_m
+                        if cheack_colisions(n_i, n_j, len(line), len(line)) and line[n_j] == '1':
+                            neighbors.append((n_i, n_j))
+                    adjacency_list[(i, j)] = neighbors
 
     return adjacency_list
-
 
 def number_of_islands() -> int:
     visited = []
