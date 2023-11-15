@@ -3,6 +3,7 @@ O(n^3)
 """
 
 import os
+import heapq
 
 MAIN_DIR = "src/data"
 
@@ -40,32 +41,49 @@ def get_input_data(
     return (m, n), clients, graph
 
 
-def floyd_warshall(matrix: list[list[int]]):
-    distance = matrix.copy()
-    n = len(distance)
-    for k in range(n):
-        for i in range(n):
-            for j in range(n):
-                distance[i][j] = min(distance[i][j], distance[i][k] + distance[k][j])
-    return distance
+def dijkstra(graph, start):
+    distances = {node: float("infinity") for node in graph}
+    distances[start] = 0
+    priority_queue = [(0, start)]
+
+    while priority_queue:
+        current_distance, current_node = heapq.heappop(priority_queue)
+
+        if current_distance > distances[current_node]:
+            continue
+
+        for neighbor, weight in graph[current_node]:
+            distance = current_distance + weight
+
+            if distance < distances[neighbor]:
+                distances[neighbor] = distance
+                heapq.heappush(priority_queue, (distance, neighbor))
+
+    return distances
+
+
+def get_shortest_paths(graph, clients):
+    shortest_paths = {}
+    for client in clients:
+        shortest_paths[client] = dijkstra(graph, client)
+    return shortest_paths
 
 
 def gamsrv(input_filename: str, output_filename: str):
-    (n, _), clients, graph = get_input_data(input_filename, "M")
-    not_clients = [i for i in range(1, n) if i not in clients]
-
-    roud_matrix = floyd_warshall(graph)
+    (_, _), clients, graph = get_input_data(input_filename, "L")
+    shortest_paths = get_shortest_paths(graph, clients)
     result = []
-    for not_client in not_clients:
+    for not_client in [not_client for not_client in graph if not_client not in clients]:
         sub_result = []
         for client in clients:
-            sub_result.append(roud_matrix[client - 1][not_client - 1])
+            sub_result.append(shortest_paths[client][not_client])
         result.append(max(sub_result))
 
+    min_delay = min(result) or None
     with open(output_filename, "w") as output_file:
-        output_file.write(str(min(result)))
+        output_file.write(str(min_delay))
 
-    return result
+    return min_delay
 
 
 if __name__ == "__main__":
