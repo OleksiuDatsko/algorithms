@@ -169,7 +169,8 @@ root.right = BinaryTree(20)
 
 ### Лабораторна №5 (Варіант 1 рівень 3)
 #### Код
- 1. [code](https://github.com/OleksiuDatsko/algorithms/tree/lab5-v1-l3)
+ 1. [main code](https://github.com/OleksiuDatsko/algorithms/tree/lab5-v1-l3)
+ 2. [draft code](https://github.com/OleksiuDatsko/algorithms/tree/lab5-v1-l3_16-11-2023)
 
 #### Завдання [link](https://drive.google.com/file/d/1TcNhEhOd-Ri2bHEkGuk1x3kn3can_WPc/view)
 Важливим фактором для багатокористувацької онлайн-гри є низька мережева затримка вiд користувача до сервера. При цьому, пристрої в Iнтернетi спiлкуються один з одним, використовуючи мережевi маршрути, якi проходять через низку промiжних вузлiв-маршрутизаторiв. Кожна ланка цього маршруту має власну ненульову затримку.
