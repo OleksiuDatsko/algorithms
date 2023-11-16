@@ -63,7 +63,8 @@ def gamsrv(input_filename: str, output_filename: str):
         result.append(max(sub_result))
 
     with open(output_filename, "w") as output_file:
-        output_file.write(str(min(result)))
+        result_with_node = list(zip(result, not_clients))
+        output_file.write(str(min(result_with_node, key = lambda k: k[0])))
 
     return result
 
