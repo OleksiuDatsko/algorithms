@@ -1,7 +1,3 @@
-"""
-O(n^3)
-"""
-
 import os
 import heapq
 
@@ -42,11 +38,13 @@ def get_input_data(
 
 
 def dijkstra(graph, start):
+    count = 0
     distances = {node: float("infinity") for node in graph}
     distances[start] = 0
     priority_queue = [(0, start)]
 
     while priority_queue:
+        count += 1
         current_distance, current_node = heapq.heappop(priority_queue)
 
         if current_distance > distances[current_node]:
@@ -59,13 +57,16 @@ def dijkstra(graph, start):
                 distances[neighbor] = distance
                 heapq.heappush(priority_queue, (distance, neighbor))
 
-    return distances
+    return distances, count
 
 
 def get_shortest_paths(graph, clients):
     shortest_paths = {}
+    _count = 0
     for client in clients:
-        shortest_paths[client] = dijkstra(graph, client)
+        shortest_paths[client], count = dijkstra(graph, client)
+        _count += count
+        print(_count)
     return shortest_paths
 
 
